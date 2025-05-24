@@ -55,8 +55,6 @@ async function ConsultarUsuarioExistente(email) {
   query.equalTo("userEmail", email);
   const result = await query.first();
   console.log(result);
-  console.log(result.id);
-  console.log(result.get('userPassword'));
   if (result) {
     const userSenha = result.get('userPassword');
     const userId = result.id;
