@@ -4,7 +4,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Longin = require('./src/crud/Login')
-const bd = require('./bd.js')
+const bd = require('./src/bd');
 
 //Conecta ao BD
 bd.conectarBd()
