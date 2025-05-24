@@ -1,7 +1,7 @@
 const Parse = require('parse/node')
 
-const applicationId = process.env.APPLICATION_ID;
-const apiKey = process.env.API_KEY;
+const applicationId = process.env.BD_APP;//APPLICATION_ID
+const apiKey = process.env.BD_APIKEY;
 
 async function conectarBd() {
 
