@@ -5,6 +5,12 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Longin = require('./src/crud/Login')
 const bd = require('./src/bd.js')
+const cors = require('cors');
+
+// Configuração padrão, permitindo todas as origens
+app.use(cors());
+
+app.use(cors(corsOptions));
 
 //Conecta ao BD
 bd.conectarBd()
