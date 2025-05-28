@@ -4,7 +4,17 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Longin = require('./src/crud/Login')
+<<<<<<< HEAD
 const bd = require('./src/bd');
+=======
+const bd = require('./src/bd.js')
+const cors = require('cors');
+
+// Configuração padrão, permitindo todas as origens
+app.use(cors());
+
+app.use(cors(corsOptions));
+>>>>>>> f60c75995311f7e9815b696583930048799aa650
 
 //Conecta ao BD
 bd.conectarBd()
@@ -13,6 +23,13 @@ bd.conectarBd()
 const app = express();
 
 //Configuração JSON response
+
+//Funcao de validacao de email. caso seja invalido, interrompe o envio.
+function validarEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
 app.use(express.json());
 
 //Rotas Publicas
@@ -27,6 +44,11 @@ app.use(express.json());
       return res.status(422).json({ error: 'Todos os campos são obrigatórios' })
     } else if (senha != confirmarSenha) {
       return res.status(422).json({ error: 'As senhas devem ser iguais' })}
+
+      // Valida o e-mail
+  if (!validarEmail(email)) {
+    return res.status(422).json({ error: 'E-mail inválido' });
+  }
     //Cria o usuário no BD
     else {
       //Cria password
@@ -63,6 +85,11 @@ app.use(express.json());
       return res.status(422).json({ error: 'Todos os campos são obrigatórios' })
     }
     else {
+
+      // Valida o e-mail
+  if (!validarEmail(email)) {
+    return res.status(422).json({ error: 'E-mail inválido' });
+  }
       //Checa se o usuário já é cadastrado
       const UsuarioExistente = (await Longin.ConsultarUsuarioExistente(email));
 
