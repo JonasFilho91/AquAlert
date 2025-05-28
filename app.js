@@ -5,14 +5,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Longin = require('./src/crud/Login')
 const bd = require('./src/bd.js')
-// Enable cors at the server side. 
-const cors = require('cors')
-const corsOption = {
-    origin: ['http://localhost:3000'],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-}
-app.use(cors(corsOption));
 
 //Conecta ao BD
 bd.conectarBd()
