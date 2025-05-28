@@ -16,6 +16,7 @@ app.use(cors());
 app.use(cors(corsOptions));
 >>>>>>> f60c75995311f7e9815b696583930048799aa650
 
+
 //Conecta ao BD
 bd.conectarBd()
 
