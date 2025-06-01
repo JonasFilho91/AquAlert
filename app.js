@@ -100,6 +100,7 @@ app.post('/auth/login', async (req, res) => {
       try {
         const secret = process.env.SECRET;
         const userId = UsuarioExistente.userId
+        const userNome = UsuarioExistente.userName
         const token = jwt.sign(
           {
             id: userId
