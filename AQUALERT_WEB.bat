@@ -1,0 +1,2 @@
+node AQUALERT_SERVER\server.js
+node AQUALERT_AUTENTICACAO_API\app.js
