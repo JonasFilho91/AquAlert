@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil - AquAlert</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <style>
+    body {
+      background-color: #e0f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    h1 {
+      color: #0d6efd;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .btn {
+      margin-top: 10px;
+    }
+    .msg {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Perfil do Usuário</h1>
+    
+   <p><strong>Nome:</strong> <span id="nome"></span></p>
+
+
+    <h5 class="mt-4">Atualizar Senha</h5>
+    <input type="password" id="novaSenha" class="form-control" placeholder="Nova Senha" />
+    <button class="btn btn-warning w-100" id="btnAtualizarSenha">Atualizar Senha</button>
+
+    <button class="btn btn-danger w-100 mt-4" id="btnExcluirConta">Excluir Conta</button>
+    <button class="btn btn-secondary w-100" id="logout">Sair</button>
+
+    <p class="msg" id="mensagem"></p>
+  </div>
+
+  <script>
+  // Recupera dados do localStorage
+  const userId = JSON.parse(localStorage.getItem('id'));
+  const userNome = JSON.parse(localStorage.getItem('nome'));
+  const token = localStorage.getItem('token'); // Verifique se o token foi salvo após o login
+
+  // Atualiza o nome na tela
+  document.getElementById('nome').textContent = userNome || 'Nome não encontrado';
+
+  const mensagem = document.getElementById('mensagem');
+
+  // Atualizar Senha
+  document.getElementById('btnAtualizarSenha').addEventListener('click', async () => {
+    const novaSenha = document.getElementById('novaSenha').value.trim();
+    if (!novaSenha) {
+      mensagem.style.color = 'red';
+      mensagem.textContent = 'Por favor, digite uma nova senha.';
+      return;
+    }
+
+    try {
+      const resposta = await fetch(`http://localhost:3000/auth/atualizar-senha/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ senha: novaSenha })
+      });
+
+      const resultado = await resposta.json();
+      mensagem.style.color = resposta.ok ? 'green' : 'red';
+      mensagem.textContent = resultado.mensagem || (resposta.ok ? 'Senha atualizada com sucesso!' : 'Erro ao atualizar senha.');
+    } catch (erro) {
+      mensagem.style.color = 'red';
+      mensagem.textContent = 'Erro ao conectar com o servidor.';
+    }
+  });
+
+  // Excluir Conta
+  document.getElementById('btnExcluirConta').addEventListener('click', async () => {
+    if (!confirm('Tem certeza que deseja excluir sua conta? Essa ação não poderá ser desfeita.')) return;
+
+    try {
+      const resposta = await fetch(`http://localhost:3000/auth/usuario/${userId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const resultado = await resposta.json();
+      if (resposta.ok) {
+        localStorage.clear();
+        alert(resultado.mensagem || 'Conta excluída com sucesso.');
+        window.location.href = 'login.html';
+      } else {
+        mensagem.style.color = 'red';
+        mensagem.textContent = resultado.mensagem || 'Erro ao excluir conta.';
+      }
+    } catch (erro) {
+      mensagem.style.color = 'red';
+      mensagem.textContent = 'Erro ao conectar com o servidor.';
+    }
+  });
+
+  // Logout
+  document.getElementById('logout').addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+</html>
