@@ -9,6 +9,9 @@ de reduzir o desperdício de água para consumo doméstico, foi pensado em um ap
 apresenta o valor de economia previsto na fatura de água e esgoto. Melhorar também o sistema com recomendações personalizadas e acompanhamento mensal. Então o aplicativo atual seria inserido mais alguns recursos necessários
 que ajudem o usuário a buscar meios para contribuir de forma consciente a eliminação de desperdício no consumo de água residencial.
 
+Público-alvo: Comunidades locais, grupos residenciais (Fortaleza-ce)
+O AquaAlert é um sistema destinado a calcular o desperdício de água residencial dos usuários, nas suas atividades de higiene pessoal e limpeza, conforme referências e dados da ONU, permitindo a conscientização sobre o desperdício e promovendo a mudança de hábito, com boas práticas de sustentabilidade e economia.
+
 # 2.Objetivo geral do projeto
 
 O objetivo deste documento é definir os requisitos para a construção de um aplicativo web que identifique
@@ -133,12 +136,21 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `PORT` Porta em que o servidor irá escutar conexões HTTP `3000`
 
-## 13.Licença
+# 13.Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## 14.Referência
+# 14.Referência
 
 - [Node.js](https://nodejs.org/en)
 - [Express.js](https://expressjs.com/)
 - [HTML/CSS/JS](https://developer.mozilla.org/)
+
+# 15. Papéis dos integrantes no trabalho
+
+1.Francisco Jonas de Sousa Filho – 2318129 – Desenvolver o back.
+2.José Matheus Venâncio Gomes - 2313618 – Elaborar o front da aplicação.
+3.Larissa Mendes Rodrigues – 2314376 – Coordenar o trabalho e coletar as evidências.
+4.Sávio Marques Castro - 2313671 – Coletar as evidências.
+5.Ramon Rocha Santiago Leite - 2313657 – Elaboração da Documentação dos Requisitos.
+6.Lucas Moreira Proença – 2317843. Desenvolver o back.
