@@ -58,9 +58,11 @@ async function ConsultarUsuarioExistente(email) {
   if (result) {
     const userSenha = result.get('userPassword');
     const userId = result.id;
-    const userName = result.userName;
+    const userName = result.get('userName')
+    const userEmail = result.get('userEmail')
     const Resultado = true;
-    return { Resultado, userSenha, userId, userName };
+    return { Resultado, userSenha, userId, userName, userEmail };
+    console.log({ Resultado, userSenha, userId, userName, userEmail })
   } else {
     const Resultado = false
     return { Resultado }

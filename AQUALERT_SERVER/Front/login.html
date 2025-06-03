@@ -108,19 +108,22 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, senha })
         });
-
+        
        const resultado = await resposta.json();
-mensagem.style.color = resposta.ok ? 'green' : 'red';
+       console.log(resultado)
+mensagem.style.color = resultado.logado ? 'green' : 'red';
 
-if (resposta.ok) {
+if (resultado.logado) {
   mensagem.textContent = resultado.mensagem || 'Login realizado com sucesso!';
   if (resultado.token) {
     localStorage.setItem('token', resultado.token);
-    if (resultado.id) {
-      localStorage.setItem('id', JSON.stringify(resultado.id));
-      localStorage.setItem('nome', resultado.nome || 'Usuário');
-      localStorage.setItem('email', resultado.email || email);
+    if (resultado.userId){
+      localStorage.setItem('id', JSON.stringify(resultado.userId));
+      localStorage.setItem('nome', resultado.userName || 'Usuário');
+      localStorage.setItem('email', resultado.useremail || email);
       localStorage.setItem("usuarioLogado", "true");
+
+      console.log(localStorage.getItem('nome'))
 
     }
     setTimeout(() => {

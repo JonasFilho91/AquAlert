@@ -56,7 +56,7 @@
   <script>
   // Recupera dados do localStorage
   const userId = JSON.parse(localStorage.getItem('id'));
-  const userNome = JSON.parse(localStorage.getItem('nome'));
+  const userNome = localStorage.getItem('nome');
   const token = localStorage.getItem('token'); // Verifique se o token foi salvo após o login
 
   // Atualiza o nome na tela

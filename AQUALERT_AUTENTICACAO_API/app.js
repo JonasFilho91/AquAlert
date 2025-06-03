@@ -100,16 +100,17 @@ app.post('/auth/login', async (req, res) => {
       try {
         const secret = process.env.SECRET;
         const userId = UsuarioExistente.userId
-        const userNome = UsuarioExistente.userName
+        const userName = UsuarioExistente.userName
+        const userEmail = UsuarioExistente.userEmail
         const token = jwt.sign(
           {
             id: userId
           },
           secret);
 
-        res.status(200).json({ msg: 'Usuário ' + email + ', logado com sucesso!', token, user: userId });
+        res.status(200).json({ msg: 'Usuário ' + email + ', logado com sucesso!', token, userId: userId, userName: userName, userEmail: userEmail, logado: true });
 
-        console.log(token);
+        console.log({ msg: 'Usuário ' + email + ', logado com sucesso!', token, userId: userId, userName: userName, userEmail: userEmail });
         0
       } catch (error) {
         console.log('Erro ao logar Usuário, verifique as informações ou contate o suporte!');
