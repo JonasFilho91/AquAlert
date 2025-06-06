@@ -128,9 +128,10 @@ app.get('/user/dados', checkToken, async (req, res) => {
 })
 
 //Rota deletar Usuário
-app.delete('/user/deletaruser', checkToken, async (req, res) => {
+app.delete('/user/deletaruser:userId', checkToken, async (req, res) => {
 
-  const { userId } = req.body
+  console.log(req.params.userId);
+  const userId = req.params.userId
   const result = await Longin.DeletarUser(userId)
   res.status(result.status).json({ msg: result.msg })
 

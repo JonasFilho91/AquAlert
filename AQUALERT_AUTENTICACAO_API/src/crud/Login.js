@@ -80,10 +80,11 @@ async function ConsultarUsuarioExistente(email) {
 * @throws Lançará um erro se houver um problema ao recuperar ou excluir o usuário.
 */
 async function DeletarUser(userId) {
-
+  console.log('Deletar', userId)
   const query = new Parse.Query('Usuario');
   try {
     const object = await query.get(userId);
+    console.log(object)
     try {
       const response = await object.destroy();
       console.log('Usuário deletado', response);
