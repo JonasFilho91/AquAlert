@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 //Configuração Porta
-const port = 3000;
+const port = 3002;
 
 //Rotas Publicas
 
